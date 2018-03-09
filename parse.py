@@ -55,7 +55,9 @@ def main():
 
 	n = len(op.join(homedir, indir))
 	for row in flist:
-		newdir = row[0][n+1: ]
+		temp = row[0][n+1: ].split(os.sep)[ :-1]
+		newdir = op.join(*temp)
+
 		os.makedirs(newdir, exist_ok=True)
 		shutil.copyfile(op.join(*row), op.join(newdir, row[1]))
 		print('COPYING {}'.format(op.join(*row)))
